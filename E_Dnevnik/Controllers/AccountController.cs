@@ -79,10 +79,11 @@ namespace E_Dnevnik.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var customUser = db.Users.FirstOrDefault(u => u.Email == model.Email);
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("ShowUser/" + customUser.Id, "Users");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -154,7 +155,7 @@ namespace E_Dnevnik.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Name + " " + model.LastName, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
               
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -171,7 +172,7 @@ namespace E_Dnevnik.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ShowUser/"+customUser.Id, "Users");
                 }
                 AddErrors(result);
             }
