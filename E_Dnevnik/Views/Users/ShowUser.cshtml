@@ -4,11 +4,23 @@
     ViewBag.Title = "ShowUser";
 }
 
-<h2>ShowUser</h2>
+<h2>Добредојдовте во Е-Дневник</h2>
 
+
+@if (Request.IsAuthenticated)
+{
 <div>
-    <h4>User</h4>
+    @if (Model.IsTeacher)
+    {
+        <h4>Најавени сте како професор !</h4>
+    }
+    else
+    {
+        <h4>Најавени сте како ученик !</h4>
+    }
+
     <hr />
+    <h5>Ваши податоци : </h5>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -55,4 +67,35 @@
         }
 
     </dl>
+    <br />
+    @if (Model.IsTeacher)
+    {
+        <h5>Ваши опции :</h5>
+        <div>
+            <label>Vnesi ocenka </label><br />
+            <label>Izberete predmet : </label><br />
+            <label>Izberete ucenik : </label><br />
+            <label>Ocenka : </label><br />
+        </div>
+
+
+
+        <button>Text</button>
+        <button>Text</button>
+        <button>Text</button>
+    }
+    else
+    {
+        <h5>Pregled na ocenkite</h5>
+    }
+
+
+
 </div>
+}
+else
+{
+    <h3>Ne ste najaveni !</h3>
+}
+
+
