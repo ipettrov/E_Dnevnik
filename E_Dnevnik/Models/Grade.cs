@@ -15,7 +15,6 @@ namespace E_Dnevnik.Models
         [Required]
         public int Subject { get; set; }
 
-        public int FirstGrade { get; set; }
-        public int FinalGrade { get; set; }
+        List<int> Grades { get; set; }
     }
 }
