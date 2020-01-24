@@ -17,17 +17,7 @@ namespace E_Dnevnik.Controllers
         }
         public ActionResult Index()
         {
-            if (Request.IsAuthenticated)
-            {
-                var email = User.Identity.Name;
-                var customUser = db.Users.FirstOrDefault(u => u.Email == email);
-
-                return RedirectToAction("ShowUser/"+customUser.Id, "Users");
-            }
-            else
-            {
-                return RedirectToAction("login", "Account");
-            }
+            return View();
             
         }
 

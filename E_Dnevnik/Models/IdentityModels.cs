@@ -21,7 +21,10 @@ namespace E_Dnevnik.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<StudentSubject> StudentSubjects { get; set; }
+        public DbSet<TeacherSubject> TeacherSubjects { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -31,5 +34,7 @@ namespace E_Dnevnik.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<E_Dnevnik.Models.Subject> Subjects { get; set; }
     }
 }

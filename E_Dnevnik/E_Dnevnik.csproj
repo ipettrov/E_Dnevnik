@@ -171,6 +171,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\StudentsController.cs" />
+    <Compile Include="Controllers\StudentSubjectsController.cs" />
+    <Compile Include="Controllers\SubjectsController.cs" />
+    <Compile Include="Controllers\TeachersController.cs" />
+    <Compile Include="Controllers\TeacherSubjectsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -179,16 +184,20 @@
     <Compile Include="Migrations\202001201759507_UserModel.designer.cs">
       <DependentUpon>202001201759507_UserModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001221557003_SubjectsModelAndGradeModel.cs" />
-    <Compile Include="Migrations\202001221557003_SubjectsModelAndGradeModel.designer.cs">
-      <DependentUpon>202001221557003_SubjectsModelAndGradeModel.cs</DependentUpon>
+    <Compile Include="Migrations\202001241923522_StidentteacherModel.cs" />
+    <Compile Include="Migrations\202001241923522_StidentteacherModel.designer.cs">
+      <DependentUpon>202001241923522_StidentteacherModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Grade.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudentSubject.cs" />
     <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\Teacher.cs" />
+    <Compile Include="Models\TeacherSubject.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -255,6 +264,31 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\ShowUser.cshtml" />
+    <Content Include="Views\Students\Create.cshtml" />
+    <Content Include="Views\Students\Delete.cshtml" />
+    <Content Include="Views\Students\Details.cshtml" />
+    <Content Include="Views\Students\Edit.cshtml" />
+    <Content Include="Views\Students\Index.cshtml" />
+    <Content Include="Views\Teachers\Create.cshtml" />
+    <Content Include="Views\Teachers\Delete.cshtml" />
+    <Content Include="Views\Teachers\Details.cshtml" />
+    <Content Include="Views\Teachers\Edit.cshtml" />
+    <Content Include="Views\Teachers\Index.cshtml" />
+    <Content Include="Views\Subjects\Create.cshtml" />
+    <Content Include="Views\Subjects\Delete.cshtml" />
+    <Content Include="Views\Subjects\Details.cshtml" />
+    <Content Include="Views\Subjects\Edit.cshtml" />
+    <Content Include="Views\Subjects\Index.cshtml" />
+    <Content Include="Views\StudentSubjects\Create.cshtml" />
+    <Content Include="Views\StudentSubjects\Delete.cshtml" />
+    <Content Include="Views\StudentSubjects\Details.cshtml" />
+    <Content Include="Views\StudentSubjects\Edit.cshtml" />
+    <Content Include="Views\StudentSubjects\Index.cshtml" />
+    <Content Include="Views\TeacherSubjects\Create.cshtml" />
+    <Content Include="Views\TeacherSubjects\Delete.cshtml" />
+    <Content Include="Views\TeacherSubjects\Details.cshtml" />
+    <Content Include="Views\TeacherSubjects\Edit.cshtml" />
+    <Content Include="Views\TeacherSubjects\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -277,8 +311,8 @@
       <DependentUpon>202001201759507_UserModel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001221557003_SubjectsModelAndGradeModel.resx">
-      <DependentUpon>202001221557003_SubjectsModelAndGradeModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001241923522_StidentteacherModel.resx">
+      <DependentUpon>202001241923522_StidentteacherModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

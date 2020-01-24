@@ -160,19 +160,32 @@ namespace E_Dnevnik.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var customUser = new User(email: model.Email, name: model.Name, lastName: model.LastName, password: model.Password, isTeacher: model.IsTeacher);
-                    db.Users.Add(customUser);
-                    db.SaveChanges();
+                    if (model.IsTeacher)
+                    {
+                        var teacher = new Teacher();
+                        teacher.Email = model.Email;
+                        teacher.Name = model.Name + " " + model.LastName;
+                        db.Teachers.Add(teacher);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        var student = new Student();
+                        student.Email = model.Email;
+                        student.Name = model.Name + " " + model.LastName;
+                        db.Students.Add(student);
+                        db.SaveChanges();
+                    }
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("ShowUser/"+customUser.Id, "Users");
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }

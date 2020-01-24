@@ -7,13 +7,13 @@ namespace E_Dnevnik.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class SubjectsModelAndGradeModel : IMigrationMetadata
+    public sealed partial class StidentteacherModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SubjectsModelAndGradeModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(StidentteacherModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "202001221557003_SubjectsModelAndGradeModel"; }
+            get { return "202001241923522_StidentteacherModel"; }
         }
         
         string IMigrationMetadata.Source
