@@ -8,16 +8,6 @@ namespace E_Dnevnik.Models
 {
     public class User
     {
-        public User() { }
-        public User(string name, string lastName, string email, string password, bool isTeacher)
-        {
-            Name = name;
-            LastName = lastName;
-            Email = email;
-            Password = password;
-            IsTeacher = isTeacher;
-        }
-
         [Key]
         public int Id { get; set; }
 
@@ -40,6 +30,16 @@ namespace E_Dnevnik.Models
         [MinLength(8, ErrorMessage = "Minimum 8 characters required")]
         public string Password { get; set; }
 
+        public List<int> Predmeti { get; set; }
+        public User(string name, string lastName, string email, string password, bool isTeacher, List<int> predmeti = null)
+        {
+            Name = name;
+            LastName = lastName;
+            Email = email;
+            Password = password;
+            IsTeacher = isTeacher;
+            Predmeti = predmeti;
+        }
       
     }
 }

@@ -47,23 +47,15 @@
         </dd>
         @if (Model.IsTeacher)
         {
-            <dt>
-                @Html.DisplayNameFor(model => model.IsTeacher)
-            </dt>
-
-            <dd>
-                Profesor
-            </dd>
+          <dt>
+            Vid: Profesor
+          </dt>
         }
         else
         {
-            <dt>
-                @Html.DisplayNameFor(model => model.IsTeacher)
-            </dt>
-
-            <dd>
-                Ucenik
-            </dd>
+          <dt>
+            Vid: Ucenik
+          </dt>
         }
 
     </dl>
@@ -72,25 +64,19 @@
     {
         <h5>Ваши опции :</h5>
         <div>
-            <label>Vnesi ocenka </label><br />
-            <label>Izberete predmet : </label><br />
-            <label>Izberete ucenik : </label><br />
-            <label>Ocenka : </label><br />
+            <textarea></textarea><br/>
+            <button>Vnesi ocenka:</button> <br/>
+            <label>Izberete predmet:</label><br/>
+            <label>Izberete ucenik:</label><br/>
+            <label>Ocenka:</label><br/>
+            <label> Prosek TUKA </label><br/>
         </div>
 
-
-
-        <button>Text</button>
-        <button>Text</button>
-        <button>Text</button>
     }
     else
     {
         <h5>Pregled na ocenkite</h5>
     }
-
-
-
 </div>
 }
 else

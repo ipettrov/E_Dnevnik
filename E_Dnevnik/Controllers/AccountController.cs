@@ -160,7 +160,7 @@ namespace E_Dnevnik.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var customUser = new User { Email = model.Email, Name = model.Name, LastName = model.LastName, Password = model.Password, IsTeacher = model.IsTeacher };
+                    var customUser = new User(email: model.Email, name: model.Name, lastName: model.LastName, password: model.Password, isTeacher: model.IsTeacher);
                     db.Users.Add(customUser);
                     db.SaveChanges();
 
