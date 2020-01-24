@@ -167,6 +167,8 @@ namespace E_Dnevnik.Controllers
                         teacher.Name = model.Name + " " + model.LastName;
                         db.Teachers.Add(teacher);
                         db.SaveChanges();
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        return RedirectToAction("Details", "Teacher", user.Id);
                     }
                     else
                     {
@@ -175,21 +177,12 @@ namespace E_Dnevnik.Controllers
                         student.Name = model.Name + " " + model.LastName;
                         db.Students.Add(student);
                         db.SaveChanges();
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        return RedirectToAction("Details", "Student", Convert.ToInt32(user.Id));
                     }
-
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }
