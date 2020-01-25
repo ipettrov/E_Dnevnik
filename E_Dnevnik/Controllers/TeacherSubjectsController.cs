@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using E_Dnevnik.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using E_Dnevnik.Models;
 
 namespace E_Dnevnik.Controllers
 {
@@ -51,11 +47,16 @@ namespace E_Dnevnik.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TeacherId,SubjectId")] TeacherSubject teacherSubject)
         {
+
+            var ts = db.TeacherSubjects.ToList();
             if (ModelState.IsValid)
             {
-                db.TeacherSubjects.Add(teacherSubject);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (!db.TeacherSubjects.ToList().Where(t => t.SubjectId == teacherSubject.SubjectId && t.TeacherId == teacherSubject.TeacherId).Any())
+                {
+                    db.TeacherSubjects.Add(teacherSubject);
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.SubjectId = new SelectList(db.Subjects, "Id", "Name", teacherSubject.SubjectId);
