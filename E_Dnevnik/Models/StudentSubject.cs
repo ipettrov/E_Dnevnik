@@ -17,7 +17,7 @@ namespace E_Dnevnik.Models
         public int FirstGrade { get; set; }
         public int SecondGrade { get; set; }
 
-        public virtual Teacher Student { get; set; }
+        public virtual Student Student { get; set; }
         public virtual Subject Subject { get; set; }
 
     }

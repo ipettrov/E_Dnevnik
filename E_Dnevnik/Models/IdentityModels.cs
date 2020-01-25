@@ -20,7 +20,6 @@ namespace E_Dnevnik.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<User> Users { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<StudentSubject> StudentSubjects { get; set; }

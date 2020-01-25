@@ -55,6 +55,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -176,7 +177,6 @@
     <Compile Include="Controllers\SubjectsController.cs" />
     <Compile Include="Controllers\TeachersController.cs" />
     <Compile Include="Controllers\TeacherSubjectsController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,8 +188,13 @@
     <Compile Include="Migrations\202001241923522_StidentteacherModel.designer.cs">
       <DependentUpon>202001241923522_StidentteacherModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001242257054_RemoveUsers.cs" />
+    <Compile Include="Migrations\202001242257054_RemoveUsers.designer.cs">
+      <DependentUpon>202001242257054_RemoveUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\E-DnevnikModel.cs" />
     <Compile Include="Models\Grade.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -313,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001241923522_StidentteacherModel.resx">
       <DependentUpon>202001241923522_StidentteacherModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001242257054_RemoveUsers.resx">
+      <DependentUpon>202001242257054_RemoveUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

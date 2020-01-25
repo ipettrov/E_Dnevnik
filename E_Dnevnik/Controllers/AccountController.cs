@@ -83,7 +83,7 @@ namespace E_Dnevnik.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToAction("ShowUser/" + customUser.Id, "Users");
+                    return RedirectToAction("Index", "Home");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -167,8 +167,9 @@ namespace E_Dnevnik.Controllers
                         teacher.Name = model.Name + " " + model.LastName;
                         db.Teachers.Add(teacher);
                         db.SaveChanges();
+                        await UserManager.AddToRoleAsync(user.Id, "teacher");
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToAction("Details", "Teacher", user.Id);
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
@@ -177,8 +178,9 @@ namespace E_Dnevnik.Controllers
                         student.Name = model.Name + " " + model.LastName;
                         db.Students.Add(student);
                         db.SaveChanges();
+                        await UserManager.AddToRoleAsync(user.Id, "student");
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToAction("Details", "Student", Convert.ToInt32(user.Id));
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 AddErrors(result);

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model E_Dnevnik.Models.E_DnevnikModel
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -6,6 +7,42 @@
 @if (Request.IsAuthenticated)
 {
     <div>Najaven</div>
+    if (Model.IsTeacher)
+    {
+        <div>Teacher</div>
+        <div> Ime @Model.Teacher.Name</div>
+        <div>
+            <label>Pregled na predmeti koi gi predava :</label>
+            <ol>
+                @foreach (var predmet in Model.Subjects)
+                {
+                    <li>
+                        @predmet.Name
+                    </li>
+                }
+            </ol>
+        </div>
+
+    }
+    else
+    {
+        <div>Student</div>
+        <div> Ime @Model.Student.Name</div>
+        <div>
+            <label>Pregled na ocenkite:</label>
+            <ol>
+                @foreach (var sub in Model.StudentSubjects)
+                {
+                    <li>
+                        <label>Predmet: @sub.Subject.Name</label><br />
+                        <label>Prva ocenka: @sub.FirstGrade</label><br />
+                        <label>Vtora ocenka: @sub.SecondGrade</label><br />
+                    </li>
+                }
+            </ol>
+        </div>
+
+    }
 }
 else
 {
