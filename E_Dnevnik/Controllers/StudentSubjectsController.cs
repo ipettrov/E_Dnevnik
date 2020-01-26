@@ -37,13 +37,15 @@ namespace E_Dnevnik.Controllers
         }
 
         // GET: StudentSubjects/Create
-        public ActionResult Create()
+        public ActionResult Create(int TeacherId)
         {
+            var teacher = db.Teachers.Find(TeacherId);
             ViewBag.StudentId = new SelectList(db.Students, "Id", "Name");
-            ViewBag.SubjectId = new SelectList(db.Subjects, "Id", "Name");
+            ViewBag.SubjectId = new SelectList(db.TeacherSubjects.ToList().FindAll(s => s.TeacherId == teacher.Id).Select(s => s.Subject).ToList(), "Id", "Name");
             return View();
         }
 
+   
         // POST: StudentSubjects/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -51,11 +53,26 @@ namespace E_Dnevnik.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "StudentId,SubjectId,FirstGrade,SecondGrade")] StudentSubject studentSubject)
         {
+            var modelSend = studentSubject;
             if (ModelState.IsValid)
             {
-                db.StudentSubjects.Add(studentSubject);
+                var ss = db.StudentSubjects.FirstOrDefault(s => s.StudentId == studentSubject.StudentId && s.SubjectId == studentSubject.SubjectId);
+                db.StudentSubjects.Remove(ss);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ss.FirstGrade == 0)
+                {
+                    
+                    db.StudentSubjects.Add(studentSubject);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    ss.SecondGrade = studentSubject.FirstGrade;
+                    db.StudentSubjects.Add(ss);
+                    db.SaveChanges();
+                }
+                
+                return RedirectToAction("Index","Home");
             }
 
             ViewBag.StudentId = new SelectList(db.Teachers, "Id", "Name", studentSubject.StudentId);

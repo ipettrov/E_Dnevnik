@@ -33,10 +33,12 @@ namespace E_Dnevnik.Controllers
         }
 
         // GET: TeacherSubjects/Create
-        public ActionResult Create()
+        public ActionResult Create(int TeacherId)
         {
             ViewBag.SubjectId = new SelectList(db.Subjects, "Id", "Name");
-            ViewBag.TeacherId = new SelectList(db.Teachers, "Id", "Name");
+            var teacher = db.Teachers.ToList().FirstOrDefault(t => t.Id == TeacherId);
+            TempData["TeacherName"] = teacher.Name;
+            TempData["TeacherId"] = teacher.Id;
             return View();
         }
 

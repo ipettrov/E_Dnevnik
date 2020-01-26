@@ -84,7 +84,7 @@ namespace E_Dnevnik.Controllers
             {
                 db.Entry(teacher).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
             return View(teacher);
         }

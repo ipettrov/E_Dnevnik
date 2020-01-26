@@ -31,12 +31,20 @@ namespace E_Dnevnik.Controllers
                 var teacher = db.Teachers.ToList().FirstOrDefault(t => t.Email == user.Email);
                 if (teacher == null)
                 {
+                   
                     model.IsTeacher = false;
                     var student = db.Students.ToList().FirstOrDefault(s => s.Email == user.Email);
                     model.Student = student;
                     var studentSubjectsForStudent = db.StudentSubjects.ToList().FindAll(s => s.StudentId == student.Id);
                     model.StudentSubjects = studentSubjectsForStudent;
-
+                    int counter = 0;
+                    double suma = 0;
+                    foreach (var ss in studentSubjectsForStudent)
+                    {
+                        if (ss.SecondGrade != 0) counter++;
+                        suma += ss.SecondGrade;
+                    }
+                    model.Prosek = ((double)suma / counter);
                 }
                 else
                 {

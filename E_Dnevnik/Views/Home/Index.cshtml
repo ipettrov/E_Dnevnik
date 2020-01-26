@@ -21,9 +21,13 @@
                     </li>
                 }
             </ol>
-          <div>
-            @Html.ActionLink("Dodaj Predmet","Create","TeacherSubjects")
-          </div>
+            <div>
+                @Html.ActionLink("Dodaj Predmet", "Create", "TeacherSubjects", new { TeacherId = Model.Teacher.Id }, null)
+            </div>
+            <div>
+                @Html.ActionLink("Vnesi ocenka", "Create", "StudentSubjects", new { TeacherId = Model.Teacher.Id }, null) <br />
+                <a href="/teachers/edit/@Model.Teacher.Id">Edit profile</a>
+            </div>
         </div>
     }
     else
@@ -35,17 +39,28 @@
             <ol>
                 @foreach (var sub in Model.StudentSubjects)
                 {
-                    <li>
-                        <label>Predmet: @sub.Subject.Name</label><br />
-                        <label>Prva ocenka: @sub.FirstGrade</label><br />
-                        <label>Vtora ocenka: @sub.SecondGrade</label><br />
-                    </li>
+                    if (sub.FirstGrade != 0)
+                    {
+                        <li>
+                            <label>Predmet: @sub.Subject.Name</label><br />
+                            <label>Polugodie: @sub.FirstGrade</label><br />
+                            @if (sub.SecondGrade != 0)
+                            {
+                                <label>Kraj: @sub.SecondGrade</label><br />
+                            }
+                        </li>
+                    }
+
                 }
             </ol>
+            <label>Postignat uspeh @Model.Prosek</label><br />
+            <a href="/students/edit/@Model.Student.Id">Edit profile</a>
         </div>
+
 
     }
 }
+
 else
 {
     <div>Ne najaven</div>

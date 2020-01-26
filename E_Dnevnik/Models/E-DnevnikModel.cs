@@ -14,5 +14,6 @@ namespace E_Dnevnik.Models
         public List<StudentSubject> StudentSubjects { get; set; }   // Koriste se u slucaj da e student site predmeti so gi slusa (koriste se StudentSubject ne samo Subjects oti tuka gi ima i ocenkite !)
         public Dictionary<Subject, List<Student>> SubjectStudentsDictionary { get; set; } // Koriste se u slucaj da e teacher za da ja imame listata koj student koj predmet go slusa za da moze teacher da stave ocenka !
 
+        public double Prosek { get; set; }
     }
 }

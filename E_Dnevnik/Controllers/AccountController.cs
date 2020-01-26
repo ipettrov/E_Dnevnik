@@ -178,6 +178,15 @@ namespace E_Dnevnik.Controllers
                         student.Name = model.Name + " " + model.LastName;
                         db.Students.Add(student);
                         db.SaveChanges();
+                        var subjects = db.Subjects;
+                        foreach(var s in subjects)
+                        {
+                            var ss = new StudentSubject();
+                            ss.StudentId = student.Id;
+                            ss.SubjectId = s.Id;
+                            db.StudentSubjects.Add(ss);
+                        }
+                        db.SaveChanges();
                         await UserManager.AddToRoleAsync(user.Id, "student");
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToAction("Index", "Home");

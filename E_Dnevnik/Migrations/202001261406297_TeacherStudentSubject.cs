@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class StidentteacherModel : DbMigration
+    public partial class TeacherStudentSubject : DbMigration
     {
         public override void Up()
         {
@@ -23,23 +23,21 @@
                     {
                         StudentId = c.Int(nullable: false),
                         SubjectId = c.Int(nullable: false),
-                        FirstGrade = c.Int(nullable: false),
-                        SecondGrade = c.Int(nullable: false),
+                        FirstGrade = c.Int(nullable: true),
+                        SecondGrade = c.Int(nullable: true),
                     })
                 .PrimaryKey(t => new { t.StudentId, t.SubjectId })
-                .ForeignKey("dbo.Subjects", t => t.SubjectId, cascadeDelete: true)
-                .ForeignKey("dbo.Teachers", t => t.StudentId, cascadeDelete: true)
                 .ForeignKey("dbo.Students", t => t.StudentId, cascadeDelete: true)
+                .ForeignKey("dbo.Subjects", t => t.SubjectId, cascadeDelete: true)
                 .Index(t => t.StudentId)
                 .Index(t => t.SubjectId);
             
             CreateTable(
-                "dbo.Teachers",
+                "dbo.Subjects",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        Email = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -57,30 +55,44 @@
                 .Index(t => t.SubjectId);
             
             CreateTable(
-                "dbo.Subjects",
+                "dbo.Teachers",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
+                        Email = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
+            DropTable("dbo.Users");
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.StudentSubjects", "StudentId", "dbo.Students");
-            DropForeignKey("dbo.StudentSubjects", "StudentId", "dbo.Teachers");
+            CreateTable(
+                "dbo.Users",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 160),
+                        LastName = c.String(nullable: false, maxLength: 160),
+                        Email = c.String(nullable: false),
+                        Password = c.String(nullable: false),
+                        IsTeacher = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
             DropForeignKey("dbo.TeacherSubjects", "TeacherId", "dbo.Teachers");
             DropForeignKey("dbo.TeacherSubjects", "SubjectId", "dbo.Subjects");
             DropForeignKey("dbo.StudentSubjects", "SubjectId", "dbo.Subjects");
+            DropForeignKey("dbo.StudentSubjects", "StudentId", "dbo.Students");
             DropIndex("dbo.TeacherSubjects", new[] { "SubjectId" });
             DropIndex("dbo.TeacherSubjects", new[] { "TeacherId" });
             DropIndex("dbo.StudentSubjects", new[] { "SubjectId" });
             DropIndex("dbo.StudentSubjects", new[] { "StudentId" });
-            DropTable("dbo.Subjects");
-            DropTable("dbo.TeacherSubjects");
             DropTable("dbo.Teachers");
+            DropTable("dbo.TeacherSubjects");
+            DropTable("dbo.Subjects");
             DropTable("dbo.StudentSubjects");
             DropTable("dbo.Students");
         }

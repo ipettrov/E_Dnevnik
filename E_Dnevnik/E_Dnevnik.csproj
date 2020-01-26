@@ -184,13 +184,9 @@
     <Compile Include="Migrations\202001201759507_UserModel.designer.cs">
       <DependentUpon>202001201759507_UserModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001241923522_StidentteacherModel.cs" />
-    <Compile Include="Migrations\202001241923522_StidentteacherModel.designer.cs">
-      <DependentUpon>202001241923522_StidentteacherModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001242257054_RemoveUsers.cs" />
-    <Compile Include="Migrations\202001242257054_RemoveUsers.designer.cs">
-      <DependentUpon>202001242257054_RemoveUsers.cs</DependentUpon>
+    <Compile Include="Migrations\202001261406297_TeacherStudentSubject.cs" />
+    <Compile Include="Migrations\202001261406297_TeacherStudentSubject.designer.cs">
+      <DependentUpon>202001261406297_TeacherStudentSubject.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -316,11 +312,8 @@
       <DependentUpon>202001201759507_UserModel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001241923522_StidentteacherModel.resx">
-      <DependentUpon>202001241923522_StidentteacherModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001242257054_RemoveUsers.resx">
-      <DependentUpon>202001242257054_RemoveUsers.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001261406297_TeacherStudentSubject.resx">
+      <DependentUpon>202001261406297_TeacherStudentSubject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
