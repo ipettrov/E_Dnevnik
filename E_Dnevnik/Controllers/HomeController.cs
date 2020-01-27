@@ -52,6 +52,8 @@ namespace E_Dnevnik.Controllers
                     {
                         model.IsTeacher = true;
                         model.Teacher = teacher;
+                        var teacherOddelenia = db.TeacherOddelenies.ToList().FindAll(s => s.TeacherId == teacher.Id).Select(s => s.Oddelenie).ToList();
+                        model.Oddelenia = teacherOddelenia;
                         var teacherSubjects = db.TeacherSubjects.ToList().FindAll(s => s.TeacherId == teacher.Id).Select(s => s.Subject).ToList();
                         model.Subjects = teacherSubjects;
                         Dictionary<Subject, List<Student>> subjectStudentDict = new Dictionary<Subject, List<Student>>();

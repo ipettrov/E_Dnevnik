@@ -6,21 +6,15 @@ using System.Web;
 
 namespace E_Dnevnik.Models
 {
-    public class Student
+    public class Oddelenie
     {
         [Key]
         public int Id { get; set; }
 
-        public int UserIdKey { get; set; }
         public string Name { get; set; }
 
-        public string Email { get; set; }
-
-        public virtual ICollection<StudentSubject> StudentSubjects { get; set; }
-
-        public Student()
-        {
-        }
+        public virtual ICollection<TeacherOddelenie> TeacherOddelenies { get; set; }
+        public virtual ICollection<StudentOddelenie> StudentOddelenies { get; set; }
 
     }
 }

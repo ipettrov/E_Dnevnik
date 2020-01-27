@@ -1,4 +1,4 @@
-﻿@model E_Dnevnik.Models.TeacherSubject
+﻿@model E_Dnevnik.Models.TeacherOddelenie
 
 @{
     ViewBag.Title = "Delete";
@@ -22,15 +22,18 @@
                 <h4>Дали сте сигурни дека сакате да ги избришите следните подесување ?</h4>
                 <hr />
                 <dl class="dl-horizontal">
+                   
+                  
+
                 </dl>
                 <div class="form-group">
                     <dl>
                         <dt>
-                            Предмет
+                            Назив на одделението
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.Subject.Name)
+                            @Html.DisplayFor(model => model.Oddelenie.Name)
                         </dd>
 
                     </dl>

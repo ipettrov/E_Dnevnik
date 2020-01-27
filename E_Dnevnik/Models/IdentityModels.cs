@@ -22,8 +22,11 @@ namespace E_Dnevnik.Models
     {
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Oddelenie> Oddelenies { get; set; }
         public DbSet<StudentSubject> StudentSubjects { get; set; }
+        public DbSet<StudentOddelenie> StudentOddelenies { get; set; }
         public DbSet<TeacherSubject> TeacherSubjects { get; set; }
+        public DbSet<TeacherOddelenie> TeacherOddelenies { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

@@ -189,7 +189,7 @@ namespace E_Dnevnik.Controllers
                         db.SaveChanges();
                         await UserManager.AddToRoleAsync(user.Id, "student");
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Create", "StudentOddelenies",new { @StudentId = student.Id});
                     }
                 }
                 AddErrors(result);

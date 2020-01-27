@@ -11,6 +11,8 @@ namespace E_Dnevnik.Models
         [Key]
         public int Id { get; set; }
 
+        public int UserIdKey { get; set; }
+
         public string Name { get; set; }
 
         public string Email { get; set; }

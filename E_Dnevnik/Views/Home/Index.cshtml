@@ -6,20 +6,24 @@
 
 @if (Request.IsAuthenticated)
 {
-    if (Model.IsTeacher)
+    if (Model.IsTeacher )
     {
         <div class="student-details row">
             <div class="col-md-1 vcenter">
                 <img src="no-avatar.jpg" />
-            </div><!--
-         --><div class="col-md-6 vcenter">
+            </div>
+            <!--
+            -->
+            <div class="col-md-6 vcenter">
                 <div class="details">
                     <span>Наставник</span>
                     <b>@Model.Teacher.Name</b>
                     <div class="email"><i class="glyphicon glyphicon-envelope"></i> @Model.Teacher.Email</div>
                 </div>
-            </div><!--
-         --><div class="col-md-5 text-right vcenter">
+            </div>
+            <!--
+            -->
+            <div class="col-md-5 text-right vcenter">
                 <a href="/teachers/edit/@Model.Teacher.Id" class="btn btn-link"><i class="glyphicon glyphicon-edit"></i> Промени ги податоците</a>
             </div>
         </div>
@@ -42,11 +46,36 @@
                         <div class="subject-box">
                             @predmet.Name
                         </div>
-                        
+
                         <div style="text-align: center">@Html.ActionLink("Избриши", "Delete", "TeacherSubjects", new { TeacherId = Model.Teacher.Id, SubjectId = predmet.Id }, null)</div>
                     </a>
                 </div>
-                    
+
+            }
+        </div>
+
+        <div class="row" style="padding-bottom:50px;">
+            <div class="col-md-6">
+                <h3>Одделениа на кои предавате</h3>
+            </div>
+            <div class="col-md-6 text-right" style="padding-top:20px;">
+                @Html.ActionLink("Додај Одделение", "Create", "TeacherOddelenies", new { TeacherId = Model.Teacher.Id }, new { @class = "btn btn-primary" })
+            </div>
+            <div class="col-md-12">
+                <hr style="margin:15px 0 0 0;" />
+            </div>
+            @foreach (var oddelenie in Model.Oddelenia)
+            {
+                <div class="col-md-2">
+                    <a href="/oddelenies/details?OddelenieId=@oddelenie.Id">
+                        <div class="subject-box">
+                            @oddelenie.Name
+                        </div>
+
+                        <div style="text-align: center">@Html.ActionLink("Избриши", "Delete", "TeacherOddelenies", new { TeacherId = Model.Teacher.Id, OddelenieId = oddelenie.Id }, null)</div>
+                    </a>
+                </div>
+
             }
         </div>
     }
@@ -99,7 +128,6 @@
         </div>
     }
 }
-
 else
 {
     <div class="row">

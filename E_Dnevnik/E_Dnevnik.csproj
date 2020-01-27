@@ -172,10 +172,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OddeleniesController.cs" />
+    <Compile Include="Controllers\StudentOddeleniesController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\StudentSubjectsController.cs" />
     <Compile Include="Controllers\StudentSubjectsDetailsController.cs" />
     <Compile Include="Controllers\SubjectsController.cs" />
+    <Compile Include="Controllers\TeacherOddeleniesController.cs" />
     <Compile Include="Controllers\TeachersController.cs" />
     <Compile Include="Controllers\TeacherSubjectsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -185,25 +188,24 @@
     <Compile Include="Migrations\202001201759507_UserModel.designer.cs">
       <DependentUpon>202001201759507_UserModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001261406297_TeacherStudentSubject.cs" />
-    <Compile Include="Migrations\202001261406297_TeacherStudentSubject.designer.cs">
-      <DependentUpon>202001261406297_TeacherStudentSubject.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001270026573_AddKey.cs" />
-    <Compile Include="Migrations\202001270026573_AddKey.designer.cs">
-      <DependentUpon>202001270026573_AddKey.cs</DependentUpon>
+    <Compile Include="Migrations\202001271652190_TeacherStudentSubject.cs" />
+    <Compile Include="Migrations\202001271652190_TeacherStudentSubject.designer.cs">
+      <DependentUpon>202001271652190_TeacherStudentSubject.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\E-DnevnikModel.cs" />
-    <Compile Include="Models\Grade.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Oddelenie.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudentOddeleniaDetails.cs" />
+    <Compile Include="Models\StudentOddelenie.cs" />
     <Compile Include="Models\StudentSubject.cs" />
     <Compile Include="Models\StudentSubjectsDetails.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\Teacher.cs" />
+    <Compile Include="Models\TeacherOddelenie.cs" />
     <Compile Include="Models\TeacherSubject.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -297,6 +299,21 @@
     <Content Include="Views\TeacherSubjects\Edit.cshtml" />
     <Content Include="Views\TeacherSubjects\Index.cshtml" />
     <Content Include="Views\StudentSubjectsDetails\Details.cshtml" />
+    <Content Include="Views\Oddelenies\Create.cshtml" />
+    <Content Include="Views\Oddelenies\Delete.cshtml" />
+    <Content Include="Views\Oddelenies\Details.cshtml" />
+    <Content Include="Views\Oddelenies\Edit.cshtml" />
+    <Content Include="Views\Oddelenies\Index.cshtml" />
+    <Content Include="Views\StudentOddelenies\Create.cshtml" />
+    <Content Include="Views\StudentOddelenies\Delete.cshtml" />
+    <Content Include="Views\StudentOddelenies\Details.cshtml" />
+    <Content Include="Views\StudentOddelenies\Edit.cshtml" />
+    <Content Include="Views\StudentOddelenies\Index.cshtml" />
+    <Content Include="Views\TeacherOddelenies\Create.cshtml" />
+    <Content Include="Views\TeacherOddelenies\Delete.cshtml" />
+    <Content Include="Views\TeacherOddelenies\Details.cshtml" />
+    <Content Include="Views\TeacherOddelenies\Edit.cshtml" />
+    <Content Include="Views\TeacherOddelenies\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -319,11 +336,8 @@
       <DependentUpon>202001201759507_UserModel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001261406297_TeacherStudentSubject.resx">
-      <DependentUpon>202001261406297_TeacherStudentSubject.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001270026573_AddKey.resx">
-      <DependentUpon>202001270026573_AddKey.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001271652190_TeacherStudentSubject.resx">
+      <DependentUpon>202001271652190_TeacherStudentSubject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

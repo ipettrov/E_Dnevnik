@@ -11,6 +11,7 @@ namespace E_Dnevnik.Models
         public Teacher Teacher { get; set; }    //Koriste se ako e teacher    
         public bool IsTeacher  { get; set; }    // Koriste se vo 2 slucaevi za da se znae role
         public List<Subject> Subjects { get; set; } //Koriste se vo slucaj da e teacher za da se znaat predmetite so gi predava
+        public List<Oddelenie> Oddelenia { get; set; } 
         public List<StudentSubject> StudentSubjects { get; set; }   // Koriste se u slucaj da e student site predmeti so gi slusa (koriste se StudentSubject ne samo Subjects oti tuka gi ima i ocenkite !)
         public Dictionary<Subject, List<Student>> SubjectStudentsDictionary { get; set; } // Koriste se u slucaj da e teacher za da ja imame listata koj student koj predmet go slusa za da moze teacher da stave ocenka !
 
