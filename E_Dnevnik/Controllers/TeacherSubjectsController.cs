@@ -9,7 +9,7 @@ namespace E_Dnevnik.Controllers
     public class TeacherSubjectsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        
         // GET: TeacherSubjects
         public ActionResult Index()
         {
@@ -104,6 +104,9 @@ namespace E_Dnevnik.Controllers
         // GET: TeacherSubjects/Delete/5
         public ActionResult Delete(int TeacherId, int SubjectId)
         {
+
+            TempData["currnetTeacherId"] = TeacherId;
+            TempData["currnetSubjectId"] = SubjectId;
             TeacherSubject teacherSubject = db.TeacherSubjects.FirstOrDefault(ss => ss.TeacherId == TeacherId && ss.SubjectId == SubjectId);
             if (teacherSubject == null)
             {
@@ -114,13 +117,16 @@ namespace E_Dnevnik.Controllers
 
         // POST: TeacherSubjects/Delete/5
         [HttpPost, ActionName("Delete")]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed()
         {
-            TeacherSubject teacherSubject = db.TeacherSubjects.Find(id);
+            var currnetTeacherId = (int)TempData["currnetTeacherId"];
+            var currnetSubjectId = (int)TempData["currnetSubjectId"];
+            TeacherSubject teacherSubject = db.TeacherSubjects.FirstOrDefault(ss => ss.TeacherId == currnetTeacherId && ss.SubjectId == currnetSubjectId);
             db.TeacherSubjects.Remove(teacherSubject);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
 
         protected override void Dispose(bool disposing)

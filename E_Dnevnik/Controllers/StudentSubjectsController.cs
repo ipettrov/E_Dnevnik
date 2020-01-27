@@ -22,13 +22,13 @@ namespace E_Dnevnik.Controllers
         }
 
         // GET: StudentSubjects/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int StudentId, int SubjectId)
         {
-            if (id == null)
+            if (StudentId == null || SubjectId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StudentSubject studentSubject = db.StudentSubjects.Find(id);
+            StudentSubject studentSubject = db.StudentSubjects.FirstOrDefault(ss => ss.StudentId == StudentId && ss.SubjectId == SubjectId);
             if (studentSubject == null)
             {
                 return HttpNotFound();

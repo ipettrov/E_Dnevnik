@@ -1,26 +1,65 @@
-﻿@model E_Dnevnik.Models.Subject
+﻿@model List<E_Dnevnik.Models.StudentSubject>
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="row">
+    <div class="col-md-6">
 
-<div>
-    <h4>Subject</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
 
-    </dl>
+            <div style="padding:30px 0;">
+                <a href="/" class="btn btn-link">
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                    <span>Назад кон почетна</span>
+                </a>
+            </div>
+
+            <div class="student-results login-form">
+                <h3>Преглед на резултати по предметот @Model.First().Subject.Name</h3>
+                <table class="table table-hover table-striped table-condensed">
+                    <thead>
+                    <th>Име на ученикот</th>
+                    <th class="text-center">Оцена на Полугодие</th>
+                    <th class="text-center">Крајна Оцена</th>
+                    </thead>
+                    <tbody>
+                        @foreach (var sub in Model)
+                        {
+                            if (sub.FirstGrade != 0)
+                            {
+                                <tr>
+                                    <td class="text-center">@sub.Student.Name</td>
+                                    <td class="text-center">@sub.FirstGrade</td>
+                                    @if (sub.SecondGrade != 0)
+                                    {
+                                        <td class="text-center">@sub.SecondGrade</td>
+
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">Сеуште нема оценка</td>
+                                    }
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td class="text-center">@sub.Student.Name</td>
+                                    <td class="text-center">Сеуште нема оценка</td>
+                                    <td class="text-center">Сеуште нема оценка</td>
+                                </tr>
+                            }
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

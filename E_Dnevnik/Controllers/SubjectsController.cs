@@ -21,18 +21,15 @@ namespace E_Dnevnik.Controllers
         }
 
         // GET: Subjects/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int SubjectId)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Subject subject = db.Subjects.Find(id);
-            if (subject == null)
+            
+            var studentSubjects = db.StudentSubjects.ToList().FindAll(ss => ss.SubjectId == SubjectId);
+            if (studentSubjects == null)
             {
                 return HttpNotFound();
             }
-            return View(subject);
+            return View(studentSubjects);
         }
 
         // GET: Subjects/Create

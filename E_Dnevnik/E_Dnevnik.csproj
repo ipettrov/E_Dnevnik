@@ -174,6 +174,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\StudentSubjectsController.cs" />
+    <Compile Include="Controllers\StudentSubjectsDetailsController.cs" />
     <Compile Include="Controllers\SubjectsController.cs" />
     <Compile Include="Controllers\TeachersController.cs" />
     <Compile Include="Controllers\TeacherSubjectsController.cs" />
@@ -200,6 +201,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentSubject.cs" />
+    <Compile Include="Models\StudentSubjectsDetails.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\TeacherSubject.cs" />
@@ -294,6 +296,7 @@
     <Content Include="Views\TeacherSubjects\Details.cshtml" />
     <Content Include="Views\TeacherSubjects\Edit.cshtml" />
     <Content Include="Views\TeacherSubjects\Index.cshtml" />
+    <Content Include="Views\StudentSubjectsDetails\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
