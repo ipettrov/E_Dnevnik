@@ -10,8 +10,10 @@ namespace E_Dnevnik.Models
     public class TeacherSubject
     {
         [Key, Column(Order = 1)]
-        public int TeacherId { get; set; }
+        public int Id { get; set; }
         [Key, Column(Order = 2)]
+        public int TeacherId { get; set; }
+        [Key, Column(Order = 3)]
         public int SubjectId { get; set; }
 
         public virtual Teacher Teacher { get; set; }

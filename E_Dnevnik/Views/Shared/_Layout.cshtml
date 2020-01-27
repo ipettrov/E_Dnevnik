@@ -7,9 +7,181 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap&subset=cyrillic" rel="stylesheet">
+
+    <style>
+        body, html {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            background: #f2f3f4;
+            color: #333;
+        }
+
+        body {
+            padding-top: 101px;
+            min-height:100vh;
+        }
+
+        .navbar-light {
+            background: #fff !important;
+            padding: 15px 0;
+            box-shadow: rgba(0,0,0,0.1) 0 10px 25px;
+        }
+
+            .navbar-light .navbar-brand {
+                color: #333;
+                height: auto;
+            }
+
+                .navbar-light .navbar-brand b {
+                    display: block;
+                    font-weight: 700;
+                    font-size: 24px;
+                    letter-spacing:-1px;
+                    text-transform:lowercase;
+                }
+
+                .navbar-light .navbar-brand span {
+                    display: block;
+                    font-size: 12px;
+                    color: #7a7a7a;
+                }
+                
+            .navbar-light li {
+                padding-top:10px;
+            }
+            .navbar-light li a {
+                font-weight:600;
+                font-size:16px;
+                color:#333;
+            }
+            .navbar-light li a:hover,
+            .navbar-light li a:focus {
+                background:none;
+                color:#337ab7;
+            }
+            .navbar-light li a.btn-primary {
+                color: #fff;
+                border-radius: 25px;
+                margin-left: 15px;
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+            .navbar-light li a.btn-primary:hover,
+            .navbar-light li a.btn-primary:focus {
+                background:#337ab7;
+                color:#fff;
+                filter:brightness(110%);
+                box-shadow:rgba(0,0,0,0.1) 0 10px 20px;
+            }
+
+            #loginForm {
+                padding: 40px 0;
+            }
+            .login-form {
+                display:block;
+                padding:35px;
+                background:#fff;
+                box-shadow:rgba(0,0,0,0.1) 0 10px 25px;
+                border-radius:5px;
+            }
+                .login-form .form-group label {
+                    display: block;
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #333;
+                }
+            .login-form .form-group .form-control {
+                padding:10px;
+                height:auto;
+                border-color:#ddd;
+                border-radius:4px;
+                font-size:14px;
+            }
+            .login-form h3 {
+                font-weight:700;
+                color:#222;
+            }
+
+            .error {
+                padding: 50px 0;
+                text-align:center;
+            }
+            .error h3 {
+                font-weight:700;
+                color:#121212;
+                margin: 20px 0 5px 0;
+            }
+            .error p {
+                font-size: 14px;
+                color:#7a7a7a;
+                margin: 0;
+            }
+
+            .student-details {
+                padding-top:20px;
+                padding-bottom:20px;
+                background:#fff;
+                border-radius:4px;
+                margin-top:30px;
+                margin-bottom:30px;
+            }
+            .student-details img {
+                width:100px;
+                height:100px;
+                border-radius:50%;
+            }
+            .student-details .details {
+                padding-left:30px;
+            }
+            .student-details .details span {
+                display: block;
+                font-size:12px;
+                text-transform:uppercase;
+                color:#999;
+            }
+            .student-details .details b {
+                display:block;
+                font-weight:700;
+                color:#121212;
+                margin:10px 0 3px 0;
+                font-size:18px;
+            }
+            .student-details .details .email {
+                display:block;
+                font-size:12px;
+                color:#7a7a7a;
+            }
+
+            .table tbody tr td,
+            .table thead th {
+                padding:10px !important;
+                font-size:14px;
+            }
+
+            .vcenter {
+                display:inline-block;
+                float:none;
+                vertical-align:middle;
+            }
+
+            .subject-box {
+                display:block;
+                margin-top:30px;
+                background:#fff;
+                text-align:center;
+                color:#333;
+                font-size:14px;
+                font-weight:600;
+                line-height:100px;
+                border-radius:5px;
+                box-shadow:rgba(0,0,0,0.10) 0 10px 20px;
+            }
+    </style>
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-light navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -17,7 +189,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("E-Dnevnik", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="/" class="navbar-brand">
+                    <b>Е-Дневник</b>
+                    <span>Евиденција на оценки</span>
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                
@@ -26,10 +201,11 @@
         </div>
     </div>
     <div class="container body-content">
+
         @RenderBody()
-        <hr />
+
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Е-Дневник</p>
         </footer>
     </div>
 

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using E_Dnevnik.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace E_Dnevnik.Controllers
 {
@@ -82,6 +83,7 @@ namespace E_Dnevnik.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = System.Security.Principal.WindowsIdentity.GetCurrent().User;
                 db.Entry(teacher).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index","Home");

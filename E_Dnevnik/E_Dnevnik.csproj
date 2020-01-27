@@ -188,6 +188,10 @@
     <Compile Include="Migrations\202001261406297_TeacherStudentSubject.designer.cs">
       <DependentUpon>202001261406297_TeacherStudentSubject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001270026573_AddKey.cs" />
+    <Compile Include="Migrations\202001270026573_AddKey.designer.cs">
+      <DependentUpon>202001270026573_AddKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\E-DnevnikModel.cs" />
@@ -314,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001261406297_TeacherStudentSubject.resx">
       <DependentUpon>202001261406297_TeacherStudentSubject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001270026573_AddKey.resx">
+      <DependentUpon>202001270026573_AddKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

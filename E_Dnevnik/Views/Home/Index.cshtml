@@ -1,67 +1,110 @@
 ﻿@model E_Dnevnik.Models.E_DnevnikModel
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Почетна";
 }
 
 
 @if (Request.IsAuthenticated)
 {
-    <div>Najaven</div>
     if (Model.IsTeacher)
     {
-        <div>Teacher</div>
-        <div> Ime @Model.Teacher.Name</div>
-        <div>
-            <label>Pregled na predmeti koi gi predava :</label>
-            <ol>
-                @foreach (var predmet in Model.Subjects)
-                {
-                    <li>
+        <div class="student-details row">
+            <div class="col-md-1 vcenter">
+                <img src="no-avatar.jpg" />
+            </div><!--
+         --><div class="col-md-6 vcenter">
+                <div class="details">
+                    <span>Наставник</span>
+                    <b>@Model.Teacher.Name</b>
+                    <div class="email"><i class="glyphicon glyphicon-envelope"></i> @Model.Teacher.Email</div>
+                </div>
+            </div><!--
+         --><div class="col-md-5 text-right vcenter">
+                <a href="/teachers/edit/@Model.Teacher.Id" class="btn btn-link"><i class="glyphicon glyphicon-edit"></i> Промени ги податоците</a>
+            </div>
+        </div>
+
+        <div class="row" style="padding-bottom:50px;">
+            <div class="col-md-6">
+                <h3>Предмети кои ги предавате</h3>
+            </div>
+            <div class="col-md-6 text-right">
+                @Html.ActionLink("Додај Предмет", "Create", "TeacherSubjects", new { TeacherId = Model.Teacher.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Додај Оценка", "Create", "StudentSubjects", new { TeacherId = Model.Teacher.Id }, new { @class = "btn btn-primary" })
+            </div>
+            <div class="col-md-12">
+                <hr style="margin:15px 0 0 0;" />
+            </div>
+            @foreach( var predmet in Model.Subjects)
+            {
+                <div class="col-md-2">
+                    <div class="subject-box">
                         @predmet.Name
-                    </li>
-                }
-            </ol>
-            <div>
-                @Html.ActionLink("Dodaj Predmet", "Create", "TeacherSubjects", new { TeacherId = Model.Teacher.Id }, null)
-            </div>
-            <div>
-                @Html.ActionLink("Vnesi ocenka", "Create", "StudentSubjects", new { TeacherId = Model.Teacher.Id }, null) <br />
-                <a href="/teachers/edit/@Model.Teacher.Id">Edit profile</a>
-            </div>
+                    </div><div style="text-align: center">@Html.ActionLink("Избриши", "Delete", "TeacherSubjects", new { TeacherId = Model.Teacher.Id,SubjectId = predmet.Id }, null)</div>
+                </div>
+            }
         </div>
     }
     else
     {
-        <div>Student</div>
-        <div> Ime @Model.Student.Name</div>
-        <div>
-            <label>Pregled na ocenkite:</label>
-            <ol>
-                @foreach (var sub in Model.StudentSubjects)
-                {
-                    if (sub.FirstGrade != 0)
-                    {
-                        <li>
-                            <label>Predmet: @sub.Subject.Name</label><br />
-                            <label>Polugodie: @sub.FirstGrade</label><br />
-                            @if (sub.SecondGrade != 0)
-                            {
-                                <label>Kraj: @sub.SecondGrade</label><br />
-                            }
-                        </li>
-                    }
 
-                }
-            </ol>
-            <label>Postignat uspeh @Model.Prosek</label><br />
-            <a href="/students/edit/@Model.Student.Id">Edit profile</a>
+        <div class="student-details row">
+            <div class="col-md-1 vcenter">
+                <img src="no-avatar.jpg" />
+            </div><div class="col-md-6 vcenter">
+                <div class="details">
+                    <span>Студент</span>
+                    <b>@Model.Student.Name</b>
+                    <div class="email"><i class="glyphicon glyphicon-envelope"></i> @Model.Student.Email</div>
+                </div>
+            </div><div class="col-md-5 text-right vcenter">
+                <a href="/students/edit/@Model.Student.Id" class="btn btn-link"><i class="glyphicon glyphicon-edit"></i> Промени ги податоците</a>
+            </div>
+
         </div>
 
+        <div class="student-results">
+            <h3>Ваши резултати</h3>
+            <table class="table table-hover table-striped table-condensed">
+                <thead>
+                <th>Име на предмет</th>
+                <th class="text-center">Оцена на Полугодие</th>
+                <th class="text-center">Крајна Оцена</th>
+                </thead>
+                <tbody>
+                    @foreach (var sub in Model.StudentSubjects)
+                    {
+                        if (sub.FirstGrade != 0)
+                        {
+                            <tr>
+                                <td>@sub.Subject.Name</td>
+                                <td class="text-center">@sub.FirstGrade</td>
+                                <td class="text-center">@sub.SecondGrade</td>
+                            </tr>
+                        }
 
+                    }
+                    <tr>
+                        <td colspan="2" class="text-right">Постигнат успех:</td>
+                        <td class="text-center">
+                            <b>@Model.Prosek</b>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     }
 }
 
 else
 {
-    <div>Ne najaven</div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="error">
+                <img src="group.png" />
+                <h3>Не сте најавени</h3>
+                <p>За да можете да го користите системот, ве молиме најавете се како Наставник или Ученик.</p>
+            </div>
+        </div>
+    </div>
 }

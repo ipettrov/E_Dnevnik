@@ -102,13 +102,9 @@ namespace E_Dnevnik.Controllers
         }
 
         // GET: TeacherSubjects/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int TeacherId, int SubjectId)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TeacherSubject teacherSubject = db.TeacherSubjects.Find(id);
+            TeacherSubject teacherSubject = db.TeacherSubjects.FirstOrDefault(ss => ss.TeacherId == TeacherId && ss.SubjectId == SubjectId);
             if (teacherSubject == null)
             {
                 return HttpNotFound();

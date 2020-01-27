@@ -19,7 +19,7 @@ namespace E_Dnevnik.Controllers
         {
             db = new ApplicationDbContext();
         }
-        public ActionResult Index()
+        public ActionResult Index(int TeacherId = 0)
         {
             E_DnevnikModel model = new E_DnevnikModel();
             if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
@@ -28,38 +28,42 @@ namespace E_Dnevnik.Controllers
                 string userEmail = System.Web.HttpContext.Current.User.Identity.Name;
                 var context = new IdentityDbContext();
                 var user = context.Users.ToList().FirstOrDefault(u => u.Email == userEmail);
-                var teacher = db.Teachers.ToList().FirstOrDefault(t => t.Email == user.Email);
-                if (teacher == null)
+                if (user != null)
                 {
-                   
-                    model.IsTeacher = false;
-                    var student = db.Students.ToList().FirstOrDefault(s => s.Email == user.Email);
-                    model.Student = student;
-                    var studentSubjectsForStudent = db.StudentSubjects.ToList().FindAll(s => s.StudentId == student.Id);
-                    model.StudentSubjects = studentSubjectsForStudent;
-                    int counter = 0;
-                    double suma = 0;
-                    foreach (var ss in studentSubjectsForStudent)
+                    var teacher = db.Teachers.ToList().FirstOrDefault(t => t.Email == user.Email);
+                    if (teacher == null)
                     {
-                        if (ss.SecondGrade != 0) counter++;
-                        suma += ss.SecondGrade;
+
+                        model.IsTeacher = false;
+                        var student = db.Students.ToList().FirstOrDefault(s => s.Email == user.Email);
+                        model.Student = student;
+                        var studentSubjectsForStudent = db.StudentSubjects.ToList().FindAll(s => s.StudentId == student.Id);
+                        model.StudentSubjects = studentSubjectsForStudent;
+                        int counter = 0;
+                        double suma = 0;
+                        foreach (var ss in studentSubjectsForStudent)
+                        {
+                            if (ss.SecondGrade != 0) counter++;
+                            suma += ss.SecondGrade;
+                        }
+                        model.Prosek = ((double)suma / counter);
                     }
-                    model.Prosek = ((double)suma / counter);
-                }
-                else
-                {
-                    model.IsTeacher = true;
-                    model.Teacher = teacher;
-                    var teacherSubjects = db.TeacherSubjects.ToList().FindAll(s => s.TeacherId == teacher.Id).Select(s=>s.Subject).ToList();
-                    model.Subjects = teacherSubjects;
-                    Dictionary<Subject, List<Student>> subjectStudentDict = new Dictionary<Subject, List<Student>>();
-                    foreach(var s in teacherSubjects)
+                    else
                     {
-                        var students = db.StudentSubjects.ToList().FindAll(ss => ss.Subject.Id == s.Id).Select(ss => ss.Student).ToList();
-                        subjectStudentDict.Add(s, students);
+                        model.IsTeacher = true;
+                        model.Teacher = teacher;
+                        var teacherSubjects = db.TeacherSubjects.ToList().FindAll(s => s.TeacherId == teacher.Id).Select(s => s.Subject).ToList();
+                        model.Subjects = teacherSubjects;
+                        Dictionary<Subject, List<Student>> subjectStudentDict = new Dictionary<Subject, List<Student>>();
+                        foreach (var s in teacherSubjects)
+                        {
+                            var students = db.StudentSubjects.ToList().FindAll(ss => ss.Subject.Id == s.Id).Select(ss => ss.Student).ToList();
+                            subjectStudentDict.Add(s, students);
+                        }
+                        model.SubjectStudentsDictionary = subjectStudentDict;
                     }
-                    model.SubjectStudentsDictionary = subjectStudentDict;
                 }
+                
 
             }
 
