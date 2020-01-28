@@ -56,6 +56,12 @@ namespace E_Dnevnik.Controllers
             var modelSend = studentSubject;
             if (ModelState.IsValid)
             {
+                if(studentSubject.FirstGrade <=0 || studentSubject.FirstGrade >= 6)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+
                 var ss = db.StudentSubjects.FirstOrDefault(s => s.StudentId == studentSubject.StudentId && s.SubjectId == studentSubject.SubjectId);
                 db.StudentSubjects.Remove(ss);
                 db.SaveChanges();

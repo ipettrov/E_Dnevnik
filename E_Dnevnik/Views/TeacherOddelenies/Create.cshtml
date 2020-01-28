@@ -4,44 +4,54 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
 
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm())
+        {
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>TeacherOddelenie</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.TeacherId, "TeacherId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("TeacherId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TeacherId, "", new { @class = "text-danger" })
+            @Html.AntiForgeryToken()
+            <div style="padding:30px 0;">
+                <a href="/" class="btn btn-link">
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                    <span>Назад кон почетна</span>
+                </a>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.OddelenieId, "OddelenieId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("OddelenieId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.OddelenieId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <div class="login-form" style="margin-bottom:30px !important;">
+                <h3>Додади одделение</h3>
+                <p>Овде можете да го додадете одделението на кое предавате.</p>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <hr />
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.TeacherId, "Наставник", htmlAttributes: new { @class = "control-label" })
+                <div>
+                    <b style="font-weight:700;">@Html.Label((string)TempData["TeacherName"])</b>
+                </div>
             </div>
-        </div>
+                
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OddelenieId, "Одделение ", htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.DropDownList("OddelenieId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.OddelenieId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <input type="submit" value="Зачувај ги промените" class="btn btn-primary bt-block" />
+                        <p class="small" style="margin:5px 0 0 0;">Зачувај ги промените пред напуштање на страната.</p>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

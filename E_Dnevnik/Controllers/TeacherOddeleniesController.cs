@@ -37,10 +37,13 @@ namespace E_Dnevnik.Controllers
         }
 
         // GET: TeacherOddelenies/Create
-        public ActionResult Create()
+        public ActionResult Create(int TeacherId)
         {
+            var teacher = db.Teachers.ToList().FirstOrDefault(t => t.Id == TeacherId);
+            TempData["TeacherName"] = teacher.Name;
+            TempData["TeacherId"] = teacher.Id;
             ViewBag.OddelenieId = new SelectList(db.Oddelenies, "Id", "Name");
-            ViewBag.TeacherId = new SelectList(db.Teachers, "Id", "Name");
+            
             return View();
         }
 
